@@ -1,4 +1,5 @@
 {
     "editor.formatOnSave": true,
-    "editor.formatOnPaste": true
+    "editor.formatOnPaste": true,
+    "python.pythonPath": "/Users/sashagolovach/anaconda3/bin/python"
 }
