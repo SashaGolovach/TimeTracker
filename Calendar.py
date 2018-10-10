@@ -8,26 +8,19 @@ from oauth2client import file, client, tools
 SCOPES = 'https://www.googleapis.com/auth/calendar.events'
 
 
-def main():
+def update(started, ended, name):
     store = file.Storage('token.json')
     creds = store.get()
     service = build('calendar', 'v3', http=creds.authorize(Http()))
     event = {
-        'summary': 'Google I/O 2015',
+        'summary': name,
         'start': {
-            'dateTime': '2018-10-07T14:00:00+03:00',
+            'dateTime': started,
             'timeZone': 'Europe/Kiev',
         },
         'end': {
-            'dateTime': '2018-10-07T18:00:00+03:00',
+            'dateTime': ended,
             'timeZone': 'Europe/Kiev',
-        },
-        'recurrence': [
-            'RRULE:FREQ=DAILY;COUNT=2'
-        ],
+        }
     }
     event = service.events().insert(calendarId='primary', body=event).execute()
-
-
-if __name__ == '__main__':
-    main()

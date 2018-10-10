@@ -13,5 +13,15 @@ DELETE FROM Tasks WHERE user_id = {id}
 '''
 
 get_tasks = '''
-SELECT name from Tasks WHERE user_id = {id}
+SELECT * from Tasks WHERE user_id = {id}
+'''
+exists_task = '''
+SELECT * FROM Tasks WHERE id = {id}
+'''
+add_action = '''
+INSERT INTO Actions (started, ended, task_id) VALUES ('{started}', '{ended}', {task_id})
+'''
+
+get_task_name_command = '''
+SELECT name from Tasks WHERE id = {task_id}
 '''
