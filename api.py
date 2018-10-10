@@ -40,9 +40,12 @@ class Database():
     def add_action(self, info):
         self.cur.execute(add_action.format(
             started=info['started'], ended=info['ended'], task_id=info['id']))
-        print(info['started'], info['ended'], self.get_task_name(info['id']))
         Calendar.update(info['started'], info['ended'],
                         self.get_task_name(info['id']))
 
     def addUser(self, name, user_id):
         self.cur.execute(add_user.format(name=name, id=user_id))
+
+    def get_users(self):
+        self.cur.execute(get_users_command.format())
+        return self.cur.fetchall()

@@ -25,3 +25,7 @@ INSERT INTO Actions (started, ended, task_id) VALUES ('{started}', '{ended}', {t
 get_task_name_command = '''
 SELECT name from Tasks WHERE id = {task_id}
 '''
+
+get_users_command = '''
+SELECT id from Users
+'''
