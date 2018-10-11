@@ -4,6 +4,9 @@ from telepot.loop import MessageLoop
 from api import Database
 import pickle
 import datetime
+import os.path
+import Calendar
+import message_templates as mt
 
 
 adding = {}
@@ -18,11 +21,16 @@ def parseMessage(msg, id):
     global id_min
     global history
     text = msg['text']
+    print(text, ' : ', msg['from']['first_name'])
     if text == '/start':
         reply_markup = {'keyboard': [['Start', 'Finish']],
                         "one_time_keyboard": False, "resize_keyboard": True}
-        bot.sendMessage(id, 'Hello!',
+        bot.sendMessage(id, 'Hello {0}!'.format(msg['from']['first_name']) + mt.hello_message,
                         reply_markup=reply_markup)
+        bot.sendMessage(id, mt.get_acess_message)
+        bot.sendMessage(id, Calendar.get_link())
+    elif 'https://www.googleapis.com/auth/calendar.events' in text:
+        Calendar.save_creds(text[23:-54], id)
     elif text == '/empty':
         users.empty_tasks(id)
     elif text == '/add':
@@ -37,7 +45,7 @@ def parseMessage(msg, id):
         else:
             bot.sendMessage(id, 'You have no tasks to do.')
     elif text == '/help':
-        bot.sendMessage(id, 'I can\'t help you now')
+        bot.sendMessage(id, mt.help_message)
     elif text == 'Start' and not history['id']['started']:
         tasks = [(x[:2]) for x in users.get_tasks(id)]
         if len(tasks) > 0:
@@ -54,14 +62,21 @@ def parseMessage(msg, id):
         bot.sendMessage(id, 'Started!')
     elif text == 'Finish' and history['id']['started']:
         history['id']['ended'] = time_now()
+        history['id']['user_id'] = id
         users.add_action(history['id'])
+        adding['id'] = False
+        starting['id'] = False
+        history['id'] = {'started': None, 'ended': None, 'id': None}
+        id_min['id'] = 0
         bot.sendMessage(id, 'Great! You have completed this task!')
     else:
         if adding['id']:
             users.add_tasks(id, msg['text'].split('\n'))
             adding['id'] = False
         else:
-            bot.sendMessage(id, 'Please choose any command')
+            bot.sendMessage(
+                id, 'I never chat to users, because my time is valuable. Your is tood:)' +
+                'Please choose any command.')
 
 
 def time_now():
