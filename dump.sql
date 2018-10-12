@@ -1,0 +1,104 @@
+-- MySQL dump 10.13  Distrib 8.0.12, for macos10.13 (x86_64)
+--
+-- Host: 127.0.0.1    Database: TimeTrackingAppDB
+-- ------------------------------------------------------
+-- Server version	8.0.12
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+ SET NAMES utf8 ;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `Actions`
+--
+
+DROP TABLE IF EXISTS `Actions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `Actions` (
+  `task_id` int(11) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `started` varchar(45) DEFAULT NULL,
+  `ended` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Actions`
+--
+
+LOCK TABLES `Actions` WRITE;
+/*!40000 ALTER TABLE `Actions` DISABLE KEYS */;
+INSERT INTO `Actions` VALUES (8,1,'1539188333.347554','1539188335.090961'),(9,4,'2018-10-10T18:06:58+03:00','<function time_now at 0x1086bb0d0>'),(9,5,'2018-10-10T18:07:24+03:00','<function time_now at 0x1091510d0>'),(9,6,'2018-10-10T18:08:17+03:00','<function time_now at 0x1097030d0>'),(9,7,'2018-10-10T18:08:52+03:00','<function time_now at 0x10d2bd0d0>'),(9,8,'2018-10-10T18:10:46+03:00','<function time_now at 0x10ca110d0>'),(9,9,'2018-10-10T18:11:31+03:00','2018-10-10T18:11:33+03:00'),(8,10,'2018-10-10T21:45:02+03:00','2018-10-10T21:45:03+03:00'),(10,11,'2018-10-11T00:09:43+03:00','2018-10-11T00:09:49+03:00'),(10,13,'2018-10-11T17:55:57+03:00','2018-10-11T17:55:58+03:00'),(15,14,'2018-10-11T17:57:27+03:00','2018-10-11T17:57:31+03:00'),(16,15,'2018-10-11T22:20:51+03:00','2018-10-11T22:20:59+03:00'),(16,16,'2018-10-11T22:21:49+03:00','2018-10-11T22:21:51+03:00'),(16,17,'2018-10-11T23:20:17+03:00','2018-10-11T23:20:19+03:00'),(17,18,'2018-10-11T23:23:28+03:00','2018-10-11T23:23:29+03:00'),(18,19,'2018-10-11T23:42:44+03:00','2018-10-11T23:42:47+03:00'),(18,20,'2018-10-11T23:42:44+03:00','2018-10-11T23:48:18+03:00'),(18,21,'2018-10-11T23:42:44+03:00','2018-10-11T23:48:21+03:00'),(18,22,'2018-10-11T23:42:44+03:00','2018-10-11T23:48:39+03:00'),(18,23,'2018-10-11T23:42:44+03:00','2018-10-11T23:48:39+03:00'),(18,24,'2018-10-11T23:42:44+03:00','2018-10-11T23:48:40+03:00'),(18,25,'2018-10-11T23:42:44+03:00','2018-10-11T23:48:41+03:00'),(18,26,'2018-10-11T23:42:44+03:00','2018-10-11T23:48:42+03:00'),(19,27,'2018-10-12T00:39:43+03:00','2018-10-12T00:40:29+03:00');
+/*!40000 ALTER TABLE `Actions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Tasks`
+--
+
+DROP TABLE IF EXISTS `Tasks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `Tasks` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Tasks`
+--
+
+LOCK TABLES `Tasks` WRITE;
+/*!40000 ALTER TABLE `Tasks` DISABLE KEYS */;
+INSERT INTO `Tasks` VALUES (1,'sasha',123),(16,'Задание',328638425),(17,'And',328638425),(18,'Батон',383569703),(19,'Fry potatoes',313995490);
+/*!40000 ALTER TABLE `Tasks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Users`
+--
+
+DROP TABLE IF EXISTS `Users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `Users` (
+  `name` text NOT NULL,
+  `id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Users`
+--
+
+LOCK TABLES `Users` WRITE;
+/*!40000 ALTER TABLE `Users` DISABLE KEYS */;
+INSERT INTO `Users` VALUES ('ANNA',313995490),('Sasha',328638425),('boom',383569703);
+/*!40000 ALTER TABLE `Users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-10-12  7:54:51
