@@ -82,6 +82,7 @@ def parseMessage(msg, id):
 
 
 def time_now():
+    os.environ['TZ'] = 'Europe/Kiev'
     return datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S+03:00")
 
 
@@ -112,7 +113,6 @@ def startBot():
 
 
 try:
-    os.environ['TZ'] = 'Europe/Kiev'
     users = Database('Users.db')
     bot = startBot()
     while 1:

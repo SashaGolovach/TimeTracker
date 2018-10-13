@@ -30,5 +30,5 @@ get_users_command = '''
 SELECT id from Users
 '''
 delete_task_command = '''
-DELETE FROM Tasks WHERE user_id = {id} and name = {name}
+DELETE FROM Tasks WHERE user_id = {id} and name = '{name}'
 '''
