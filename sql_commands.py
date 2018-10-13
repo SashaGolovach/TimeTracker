@@ -29,3 +29,6 @@ SELECT name from Tasks WHERE id = {task_id}
 get_users_command = '''
 SELECT id from Users
 '''
+delete_task_command = '''
+DELETE FROM Tasks WHERE user_id = {id} and name = {name}
+'''

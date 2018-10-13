@@ -1,11 +1,11 @@
 import telepot
+import os
 import time
+import datetime
+import Calendar
 from telepot.loop import MessageLoop
 from api import Database
-import pickle
-import datetime
 import os.path
-import Calendar
 import message_templates as mt
 
 
@@ -52,6 +52,7 @@ def parseMessage(msg, id):
             starting['id'] = True
             id_min['id'] = tasks[0][0]
             lst = ['/' + str(x[0] - id_min['id']) + ' ' + x[1] for x in tasks]
+            bot.sendMessage(id, 'Select task to start')
             bot.sendMessage(id, '\n'.join(lst))
         else:
             bot.sendMessage(id, 'You have no tasks to do.')
@@ -68,6 +69,7 @@ def parseMessage(msg, id):
         starting['id'] = False
         history['id'] = {'started': None, 'ended': None, 'id': None}
         id_min['id'] = 0
+        users.delete_task(id, users.get_task_name(history['id']['id']))
         bot.sendMessage(id, 'Great! You have completed this task!')
     else:
         if adding['id']:
@@ -75,7 +77,7 @@ def parseMessage(msg, id):
             adding['id'] = False
         else:
             bot.sendMessage(
-                id, 'I never chat to users, because my time is valuable. Your is tood:)' +
+                id, 'I never chat to users, because my time is valuable. Your is tood:) ' +
                 'Please choose any command.')
 
 
@@ -110,6 +112,7 @@ def startBot():
 
 
 try:
+    os.environ['TZ'] = 'Europe/Kiev'
     users = Database('Users.db')
     bot = startBot()
     while 1:

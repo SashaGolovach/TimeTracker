@@ -17,6 +17,9 @@ class Database():
     def empty_tasks(self, user_id):
         self.cur.execute(empty_tasks.format(id=user_id))
 
+    def delete_task(self, user_id, name):
+        self.cur.execute(delete_task_command.format(id=user_id, name=name))
+
     def add_tasks(self, user_id, args):
         for name in args:
             self.cur.execute(add_tasks.format(name=name, id=user_id))
