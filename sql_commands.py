@@ -32,3 +32,6 @@ SELECT id from Users
 delete_task_command = '''
 DELETE FROM Tasks WHERE user_id = {id} and name = '{name}'
 '''
+# git add .
+# git commit -m '.'
+# git push

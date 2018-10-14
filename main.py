@@ -61,6 +61,7 @@ def parseMessage(msg, id):
         history['id']['id'] = int(text[1:]) + id_min['id']
         starting['id'] = False
         bot.sendMessage(id, 'Started!')
+        print(history['id']['started'])
     elif text == 'Finish' and history['id']['started']:
         history['id']['ended'] = time_now()
         history['id']['user_id'] = id
