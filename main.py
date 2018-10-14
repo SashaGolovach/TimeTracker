@@ -7,6 +7,7 @@ from telepot.loop import MessageLoop
 from api import Database
 import os.path
 import message_templates as mt
+import pytz
 
 
 adding = {}
@@ -83,8 +84,8 @@ def parseMessage(msg, id):
 
 
 def time_now():
-    os.environ['TZ'] = 'Europe/Kiev'
-    return datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S+03:00")
+    tz = pytz.timezone('Europe/Kiev')
+    return datetime.datetime.now(tz=tz).strftime("%Y-%m-%dT%H:%M:%S+03:00")
 
 
 def on_chat_message(msg):
