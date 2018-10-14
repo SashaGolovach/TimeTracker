@@ -67,20 +67,19 @@ def parseMessage(msg, id):
         history['id']['ended'] = time_now()
         history['id']['user_id'] = id
         users.add_action(history['id'])
+        users.delete_task(id, users.get_task_name(history['id']['id'], id))
+        bot.sendMessage(id, 'Great! You have completed this task!')
         adding['id'] = False
         starting['id'] = False
         history['id'] = {'started': None, 'ended': None, 'id': None}
         id_min['id'] = 0
-        users.delete_task(id, users.get_task_name(history['id']['id']))
-        bot.sendMessage(id, 'Great! You have completed this task!')
     else:
         if adding['id']:
             users.add_tasks(id, msg['text'].split('\n'))
             adding['id'] = False
         else:
             bot.sendMessage(
-                id, 'I never chat to users, because my time is valuable. Your is tood:) ' +
-                'Please choose any command.')
+                id, 'Please choose any command.')
 
 
 def time_now():

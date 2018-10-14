@@ -14,6 +14,12 @@ help_message = '''
 I am created to help you so there's a list of commands I am able to do:
 1. /add - allows you to push some new tasks in your To Do List. Each row will be a new task here.
 2. Start - starts tracking the time till now. You can't do multiple tasks the same time in the case you're not Julius Caesar.
-Otherwise, contact @sasha_golovach to add this feature.
 3. Finish - stops the timer and updates your progress in google calendar.
+Example how to start a task:
+/add
+TaskToDo1
+Start
+/0
+Finish
+Still have any questions or suggestions? Chat @sasha_golovach to help you.
 '''
